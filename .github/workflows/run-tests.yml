@@ -20,5 +20,5 @@ jobs:
         run: |
           curl -X POST -H "Accept: application/vnd.github.everest-preview+json" \
           -H "Authorization: token ${{ secrets.TESTING_REPO_TOKEN }}" \
-          https://api.github.com/repos/<Sneha781>/testing/actions/workflows/Testing-repository.yml/dispatches \
+          https://api.github.com/repos/<Sneha781>/testing/actions/workflows/test.yml/dispatches \
           -d '{"ref":"main"}'
