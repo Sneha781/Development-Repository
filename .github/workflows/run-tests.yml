@@ -1,0 +1,24 @@
+name: Run Tests on Push
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger tests from
+
+jobs:
+  run-tests:
+    name: Trigger Tests in Testing Repository
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the current repository
+      - name: Checkout Development Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Trigger a webhook or action in the testing repository
+      - name: Trigger Testing Workflow
+        run: |
+          curl -X POST -H "Accept: application/vnd.github.everest-preview+json" \
+          -H "Authorization: token ${{ secrets.TESTING_REPO_TOKEN }}" \
+          https://api.github.com/repos/<Sneha781>/testing/actions/workflows/test.yml/dispatches \
+          -d '{"ref":"main"}'
